@@ -214,7 +214,7 @@ int Count(PNODE first,PNODE last)
         iCount++;
         first = first -> next;
         
-    }while(first == last);
+    }while(first != last);
 
     return iCount;
 }
