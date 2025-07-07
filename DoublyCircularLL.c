@@ -109,6 +109,33 @@ void DeleteLast(PPNODE first , PPNODE last)
     (*first)-> prev =*last;
 }
 
+void Display(PNODE first,PNODE last)
+{
+    printf("NULL <=>");
+    do
+    {
+        printf("| %d | <=>",(first) -> data);
+        first = (first) -> next;
+    }while(first != last -> next);
+
+    printf("NULL\n");
+
+
+}
+
+int Count(PNODE first,PNODE last)
+{
+    int iCount = 0;
+    do
+    {
+        iCount++;
+        first = first -> next;
+        
+    }while(first != last -> next);
+
+    return iCount;
+}
+
 void InsertAtPos(PPNODE first, PPNODE last, int no, int pos)
 {
     PNODE newn = NULL;
@@ -120,12 +147,12 @@ void InsertAtPos(PPNODE first, PPNODE last, int no, int pos)
     
     
 
-    iCount = Count(first, last);
+    iCount = Count(*first, *last);
     
     if((pos < 1) || (pos > iCount +1))
     {
-        print("Invalid Input\n");
-        return 0;
+        printf("Invalid Input\n");
+        return ;
     }
     else if(pos == 1)
     {
@@ -160,12 +187,12 @@ void DeleteAtPos(PPNODE first , PPNODE last, int pos)
     PNODE temp = NULL;
     PNODE target = NULL;
 
-    iCount = Count(first, last);
+    iCount = Count(*first,*last);
     
     if((pos < 1) || (pos > iCount))
     {
-        print("Invalid Input\n");
-        return 0;
+        printf("Invalid Input\n");
+        return ;
     }
     else if(pos == 1)
     {
@@ -192,32 +219,7 @@ void DeleteAtPos(PPNODE first , PPNODE last, int pos)
 }
 
 
-void Display(PNODE first,PNODE last)
-{
-    printf("NULL <=>");
-    do
-    {
-        printf("| %d | <=>",(first) -> data);
-        first = (first) -> next;
-    }while(first != last -> next);
 
-    printf("NULL\n");
-
-
-}
-
-int Count(PNODE first,PNODE last)
-{
-    int iCount = 0;
-    do
-    {
-        iCount++;
-        first = first -> next;
-        
-    }while(first != last);
-
-    return iCount;
-}
 
 
 int main()
@@ -305,9 +307,10 @@ int main()
         }
         else if(iChoice == 8 )
         {
-            printf("Number of elements in the  Linked List are: \n");
+            iRet = Count(head,tail);
+            printf("Number of elements in the  Linked List are: %d \n",iRet);
 
-            Count(head,tail);
+            
         }
         else if(iChoice == 0 )
         {
